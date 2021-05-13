@@ -1,0 +1,58 @@
+\documentclass[a4paper]{article}
+\usepackage[a4paper, total={17cm, 24cm}]{geometry}
+\usepackage[T1]{fontenc}
+\usepackage[utf8]{inputenc}
+\usepackage{lmodern}
+\usepackage[english]{babel}
+\usepackage{amsmath}
+\usepackage{amssymb}
+\usepackage{siunitx}
+\usepackage{tikz}
+\usepackage{blindtext}
+\usepackage{braket}
+\usepackage{physics}
+
+\setlength\parindent{0pt}
+\setlength\parskip{1em}
+
+\newcommand{\R}{\mathbb{R}}
+\newcommand{\Q}{\mathbb{Q}}
+\newcommand{\Z}{\mathbb{Z}}
+\newcommand{\N}{\mathbb{N}}
+\newcommand{\I}{\mathbb{I}}
+\newcommand{\F}{\mathbb{F}}
+\newcommand{\C}{\mathbb{C}}
+
+\newcommand{\bb}[1]{\textbf{#1}}
+\newcommand{\ov}[1]{\overline{#1}}
+\newcommand{\ova}[1]{\overrightarrow{#1}}
+
+	\title{Related Work on Reddit}	
+	\author{Carel Kuusk}
+	\date{\vspace{-5ex}}
+\begin{document}
+\maketitle
+
+\section*{Related work}
+
+The aim of this project is to get a better sense of how Reddit evolved in its first years. For this we will be analyzing 
+the network structure of comments from 2005 to 2008. Possible analysis methods are provided in Cordeiro et al. (2018): snapshot analysis 
+to identify more static features of the network structure and aggregate analysis (either via landmark windows or sliding windows) for 
+analysing statistical properties of the graphs within a certain timeframe.
+
+Troy Steinbauer has analyzed the overall properties of the Reddit network in 2011. He identified that for example related subreddit distribution was 
+following the expected power-law distribution.
+
+The behaviour of individual users was analyzed by Thukral et al in 2018. The analysis was partly done on the 2008 and partly on the 2014-2015 period. 
+They discovered, that based on the commenting and posting patterns, the users can be clustered into three types based on when most of their contributions are made 
+(either within a short period from sign-up, stably, or more actively after a long hibernation). Also they discovered a clear separation between commenters and posters.
+
+
+\section*{References}
+
+Mário Cordeiro, Rui P. Sarmento, Pavel Brazdil and João Gama (October 31st 2018). Evolving Networks and Social Network Analysis Methods and Techniques, Social Media and Journalism - Trends, Connections, Implications, Ján Višňovský and Jana Radošinská, IntechOpen, DOI: 10.5772/intechopen.79041. Available from: https://www.intechopen.com/books/social-media-and-journalism-trends-connections-implications/evolving-networks-and-social-network-analysis-methods-and-techniques
+
+Troy Steinbauer (2011) Information and Social Analysis of Reddit. Available at: http://snap.stanford.edu/class/cs224w-2011/proj/tbower\_Finalwriteup\_v1.pdf 
+
+Sachin Thukral, Hardik Meisheri, Tushar Kataria, Aman Agarwal, Ishan Verma, Arnab Chatterjee, Lipika Dey (2018) Analyzing behavioral trends in community driven discussion platforms like Reddit. arXiv:1809.07087
+\end{document}
