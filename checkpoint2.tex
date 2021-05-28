@@ -11,6 +11,9 @@
 \usepackage{blindtext}
 \usepackage{braket}
 \usepackage{physics}
+\usepackage{hyperref}
+
+\newcommand{\code}[1]{\texttt{\detokenize{#1}}}
 
 \setlength\parindent{0pt}
 \setlength\parskip{1em}
@@ -33,6 +36,8 @@
 \begin{document}
 \maketitle
 
+The code and the dataset that will be used in this project are available at GitHub \href{https://github.com/CarelKuusk/reddit_comments/tree/main/reddit_data}.
+
 \section*{Related work}
 
 The aim of this project is to get a better sense of how Reddit evolved in its first years. For this we will be analyzing 
@@ -48,7 +53,64 @@ They discovered, that based on the commenting and posting patterns, the users ca
 (either within a short period from sign-up, stably, or more actively after a long hibernation). Also they discovered a clear separation between commenters and posters.
 
 
-\section*{}
+\section*{Dataset}
+
+The dataset consists of all of Reddit's comments from 2005 to 2008 (included), that is from the inception of the Reddit. This provides an incredible opportunity to investigate 
+initial stages of an online social network. The data was scraped by Reddit user \href{https://www.reddit.com/user/Stuck_In_the_Matrix/}{u/Stuck\_In\_the\_Matrix} in 2016 
+and torrented from the \href{https://academictorrents.com/details/85a5bd50e4c365f8df70240ffd4ecc7dec59912b}{Academic Torrents} website. The original dataset includes 
+comments up to at least 2015, but it would not have been feasible to include the whole of Reddit's comment dataset. However, the compressed dataset size is still 932 Mb, and 
+covers the initial growth phase of the site, including the first year during which Reddit let users create their own subreddits. 
+ 
+Each line in the decompressed dataset contains data about one comment and is organized as a JSON document. The relevant fields are as follows:
+\begin{itemize}
+    \item \code{subreddit} -- the subreddit under which the original link is;
+    \item \code{subreddit_id} -- the ID of the subreddit; 
+    \item \code{author} -- the username of the author;
+    \item \code{body} -- the body of the comment;
+    \item \code{score} -- the karma on the comment;
+    \item \code{link_id} -- the ID of the link under which the comment was posted;
+    \item \code{parent_id} -- the ID of the parent, which can be either the link or another comment;
+    \item \code{id} -- the ID of the comment itself;
+    \item \code{created_utc} -- the UNIX timestamp of the comment creation. 
+\end{itemize}
+There are more metadata, e.g. a field \code{controversiality}, which measures whether a comment has received a similar number of upvotes and downvotes, etc. Also, during the 
+first years there were less fields (downvotes for example did not appear before 2008), so the selection was partly motivated by ensuring that all the fields would be present 
+during the whole period under analysis. 
+
+Some basic cleaning was applied to the data. First, the fields \code{link_id}, \code{parent_id} needed some preprocessing to be compatible and comparable with the field \code{id}.
+Secondly, due to a relatively large number of comments authored by now-deleted users, some preliminary analysis steps required eliminating comments that were authored by 
+the deleted users. This is because all the deleted users were renamed to \code{"[deleted]"}, i.e. the statistics about user comment distributions, max number of posts, etc were 
+skewed due to the there being many more comments authored by a deleted user. 
+
+
+\includegraphics[width=0.8\textwidth]{subreddits.png}
+
+From the figure above we can see that the number of subreddits grew rapidly and then exploded at the start of 2008 due to Reddit allowing users to create their own subreddits.
+
+\includegraphics[width=0.8\textwidth]{commenters.png}
+
+The steady but fast growth of users is also clear from the data. 
+
+\section*{Methodology}
+
+The methodology in this project follows the steps below. 
+\begin{enumerate}
+    \item Finding and downloading data.
+    \item Preliminary preprocessing, ensuring the high quality of data.  
+    \item Preliminary data analysis, investigating potentially interesting further research paths. 
+    \item Add a sentiment feature to comments (by applying a pre-trained model on the comments). 
+    \item Create graph(s).
+    \item Link prediction. 
+\end{enumerate}
+
+(For the second checkpoint, the first three are done). For the graphs, there are many options, which I will probably explore. First, creating a bipartite graph of users 
+and subreddits and predicting from past behaviour, if and which people would join which subreddits. It is also possible to create a graph of co-commentators -- a graph of people 
+who have posted under the same post. This enables to explore communities and their formation more in detail.
+
+A good thing about this dataset is that this is naturally temporally ordered. The dataset naturally comes in months, but each comment also has a timestamp on it, so it is 
+relatively natural to analyze community formations. 
+
+There will be two types of analysis that will be carried out. 
 
 
 \end{document}
