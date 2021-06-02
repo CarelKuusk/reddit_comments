@@ -1,0 +1,166 @@
+\documentclass[a4paper]{article}
+\usepackage[a4paper, total={17cm, 24cm}]{geometry}
+\usepackage[T1]{fontenc}
+\usepackage[utf8]{inputenc}
+\usepackage{lmodern}
+\usepackage[english]{babel}
+\usepackage{amsmath}
+\usepackage{amssymb}
+\usepackage{siunitx}
+\usepackage{tikz}
+\usepackage{blindtext}
+\usepackage{braket}
+\usepackage{physics}
+\usepackage{hyperref}
+
+\usepackage{cite}
+\bibliographystyle{ieeetr}
+
+\newcommand{\code}[1]{\texttt{\detokenize{#1}}}
+
+\setlength\parindent{0pt}
+\setlength\parskip{1em}
+
+\newcommand{\R}{\mathbb{R}}
+\newcommand{\Q}{\mathbb{Q}}
+\newcommand{\Z}{\mathbb{Z}}
+\newcommand{\N}{\mathbb{N}}
+\newcommand{\I}{\mathbb{I}}
+\newcommand{\F}{\mathbb{F}}
+\newcommand{\C}{\mathbb{C}}
+
+\newcommand{\bb}[1]{\textbf{#1}}
+\newcommand{\ov}[1]{\overline{#1}}
+\newcommand{\ova}[1]{\overrightarrow{#1}}
+
+	\title{Reddit comments analysis}	
+	\author{Carel Kuusk}
+	\date{\vspace{-5ex}}
+\begin{document}
+\maketitle
+
+%Articles 
+%https://www.nature.com/articles/s41598-021-81531-x
+%https://journals.sagepub.com/doi/full/10.1177/2056305118815908
+%https://dl.acm.org/doi/pdf/10.1145/2567948.2576943
+%https://dl.acm.org/doi/pdf/10.1145/3400806.3400814
+%https://www.nature.com/articles/s41598-020-78224-2
+%https://dl.acm.org/doi/fullHtml/10.1145/1400214.1400220
+
+
+The code and the dataset that will be used in this project are available at GitHub \href{https://github.com/CarelKuusk/reddit_comments}.
+
+This is blah \cite{Nobody06}.
+
+\section*{Introduction}
+
+With the advent of internet, social networks started to gain popularity around the turn of the century. The first major social network was SixDegrees.com, which launched in 1997. However, the rapid growth came 
+with wider adoption of the internet and mobile devices, with Facebook being launched in 2004, Reddit in 2005 and Twitter in 2006 being one of the most popular ones still active today.~\cite{Howard2008}
+
+Reddit is a massive social network, which ranks amongst the top 20 visited sites on the web by traffic. Reddit is organized in user-created communities called subreddits. Each subreddit has its own set of rules 
+in addition to the global moderation policy of the Reddit website itself, a common topic and a set of volunteer moderators who are allowed to enforce the rules. Users can subscribe to subreddits, in which case the 
+activity on the subreddit appears in their personal feed. Each user can post on the subscribed subreddit, and comment on posts and other comments, thus engagement under a post follows a tree structure. Users can 
+upvote and downvote posts and comments, the difference between posts and comments results in the total score for the post. 
+
+However, the early Reddit was a totally different website, being more similar to HackerNews in its organization. Users were not allowed to create their own subreddits before the start of 2008 and at first there was just 
+one 'subreddit' called \textit{reddit.com}. It was not a subreddit in contemporary sense, but instead just the front page where everybody could post and comment. The first subreddits were created manually by the 
+site administrators, with the oldest proper subreddit being r/features or r/nsfw created on XXX. 
+
+However, the first subreddits, that acquired significant engagement, were r/programming (created XXX) and r/science (created XXX). This indicates the first audience Reddit was directed towards were predominantly 
+male and nerdy. The early culture probably helps to explain why to this day Reddit's audience is mainly comprised of young males~\cite{Duggan2013}.
+
+Reddit is relatively open to data acquisition compared to other large social media platforms like Facebook and Twitter. Reddit has a comprehensive API that anybody can use to acquire data from the very inception of the 
+Reddit platform. Queryable entities include subreddits, users, links and comments, etc~\cite{RedditAPI}. This project used a comments dataset scraped using the publicly accessible API. 
+
+The availability of easily accessible data even from the very beginning of a social media platform is also the main reason for choosing this project. The easily accessible and well-formatted data allows us to analyze 
+how an early social networking cite evolved from a small site to the behemoth it is today. The initial plan was to analyze the evolution of different subreddits -- how users discover subreddits, why some subreddits become 
+more popular, interaction between different subreddits etc.
+
+However, during the analysis several hindering factors were discovered. First, the original Reddit did not have any user-created subreddits, and only opened 
+the platform for users to create their own subreddits in 2008, with subsequent exponential growth in the number of subreddits and the number of users (as opposed to the previous roughly linear growth). This in and of itself 
+is an interesting result and confirmation of the power of user-generated content that is so widespread in todays online activities. Sadly, the exponential increase in the number of subreddits and users also 
+meant that the computational capabilities accessible to the author were not sufficient to analyze such vast volumes of data. 
+
+This meant 
+
+
+
+
+
+\section*{Related work}
+
+The aim of this project is to get a better sense of how Reddit evolved in its first years. For this we will be analyzing 
+the network structure of comments from 2005 to 2008. Possible analysis methods are provided in Cordeiro et al. (2018): snapshot analysis 
+to identify more static features of the network structure and aggregate analysis (either via landmark windows or sliding windows) for 
+analysing statistical properties of the graphs within a certain timeframe.
+
+Troy Steinbauer has analyzed the overall properties of the Reddit network in 2011. He identified that for example related subreddit distribution was 
+following the expected power-law distribution.
+
+The behaviour of individual users was analyzed by Thukral et al in 2018. The analysis was partly done on the 2008 and partly on the 2014-2015 period. 
+They discovered, that based on the commenting and posting patterns, the users can be clustered into three types based on when most of their contributions are made 
+(either within a short period from sign-up, stably, or more actively after a long hibernation). Also they discovered a clear separation between commenters and posters.
+
+
+\section*{Dataset}
+
+The dataset consists of all of Reddit's comments from 2005 to 2008 (included), that is from the inception of the Reddit. This provides an incredible opportunity to investigate 
+initial stages of an online social network. The data was scraped by Reddit user \href{https://www.reddit.com/user/Stuck_In_the_Matrix/}{u/Stuck\_In\_the\_Matrix} in 2016 
+and torrented from the \href{https://academictorrents.com/details/85a5bd50e4c365f8df70240ffd4ecc7dec59912b}{Academic Torrents} website. The original dataset includes 
+comments up to at least 2015, but it would not have been feasible to include the whole of Reddit's comment dataset. However, the compressed dataset size is still 932 Mb, and 
+covers the initial growth phase of the site, including the first year during which Reddit let users create their own subreddits. 
+ 
+Each line in the decompressed dataset contains data about one comment and is organized as a JSON document. The relevant fields are as follows:
+\begin{itemize}
+    \item \code{subreddit} -- the subreddit under which the original link is;
+    \item \code{subreddit_id} -- the ID of the subreddit; 
+    \item \code{author} -- the username of the author;
+    \item \code{body} -- the body of the comment;
+    \item \code{score} -- the karma on the comment;
+    \item \code{link_id} -- the ID of the link under which the comment was posted;
+    \item \code{parent_id} -- the ID of the parent, which can be either the link or another comment;
+    \item \code{id} -- the ID of the comment itself;
+    \item \code{created_utc} -- the UNIX timestamp of the comment creation. 
+\end{itemize}
+There are more metadata, e.g. a field \code{controversiality}, which measures whether a comment has received a similar number of upvotes and downvotes, etc. Also, during the 
+first years there were less fields (downvotes for example did not appear before 2008), so the selection was partly motivated by ensuring that all the fields would be present 
+during the whole period under analysis. 
+
+Some basic cleaning was applied to the data. First, the fields \code{link_id}, \code{parent_id} needed some preprocessing to be compatible and comparable with the field \code{id}.
+Secondly, due to a relatively large number of comments authored by now-deleted users, some preliminary analysis steps required eliminating comments that were authored by 
+the deleted users. This is because all the deleted users were renamed to \code{"[deleted]"}, i.e. the statistics about user comment distributions, max number of posts, etc were 
+skewed due to the there being many more comments authored by a deleted user. 
+
+
+\includegraphics[width=0.8\textwidth]{subreddits.png}
+
+From the figure above we can see that the number of subreddits grew rapidly and then exploded at the start of 2008 due to Reddit allowing users to create their own subreddits.
+
+\includegraphics[width=0.8\textwidth]{commenters.png}
+
+The steady but fast growth of users is also clear from the data. 
+
+\section*{Methodology}
+
+The methodology in this project follows the steps below. 
+\begin{enumerate}
+    \item Finding and downloading data.
+    \item Preliminary preprocessing, ensuring the high quality of data.  
+    \item Preliminary data analysis, investigating potentially interesting further research paths. 
+    \item Add a sentiment feature to comments (by applying a pre-trained model on the comments). 
+    \item Create graph(s).
+    \item Link prediction. 
+\end{enumerate}
+
+(For the second checkpoint, the first three are done). For the graphs, there are many options, which I will probably explore. First, creating a bipartite graph of users 
+and subreddits and predicting from past behaviour, if and which people would join which subreddits. It is also possible to create a graph of co-commentators -- a graph of people 
+who have posted under the same post. This enables to explore communities and their formation more in detail.
+
+A good thing about this dataset is that this is naturally temporally ordered. The dataset naturally comes in months, but each comment also has a timestamp on it, so it is 
+relatively natural to analyze community formations. 
+
+There will be two types of analysis that will be carried out. 
+
+\bibliography{final_report_bib}
+
+\end{document}
